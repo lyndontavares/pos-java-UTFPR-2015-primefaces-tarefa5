@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel id="panel">
+                <h:panelGrid columns="1">
+                    <p:commandButton action="index" value="Voltar a Home"></p:commandButton>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>      
+      
+        
+        <h:form id="form">
+
+            <p:growl id="msgs" showDetail="true" />
+ 
+            <h:panelGrid columns="2" cellpadding="5">
+
+                <p:outputLabel for="button" value="Calendário com Botão" />
+                <p:calendar id="button" value="#{calendarView.date3}" showOn="button" />
+
+            </h:panelGrid>
+ 
+        </h:form>
+        
+        
+        
+<h:form>         
+    <p:growl id="growl" showDetail="true" />
+ 
+    <h3>Range Slider</h3>
+    <h:panelGrid columns="1" style="margin-bottom: 10px">
+        <h:outputText id="displayRange" value="Entre #{sliderView.number6} e #{sliderView.number7}" />
+        <p:slider for="txt6,txt7" display="displayRange" style="width: 400px" range="true" displayTemplate="Between {min} and {max}" />
+    </h:panelGrid>
+    <h:inputHidden id="txt6" value="#{sliderView.number6}" />
+    <h:inputHidden id="txt7" value="#{sliderView.number7}" />
+ 
+    <p:separator />
+ 
+    <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show();" />
+ 
+    <p:dialog header="Slider Values" showEffect="fade" hideEffect="fade" widgetVar="dlg">
+        <h:panelGrid id="display" columns="1" cellpadding="5">
+            <h:outputText value="Number 1: #{sliderView.number1}" />
+ 
+            <h:outputText value="Number 2: #{sliderView.number2}" />
+ 
+            <h:outputText value="Number 3: #{sliderView.number3}" />
+ 
+            <h:outputText value="Number 4: #{sliderView.number4}" />
+ 
+            <h:outputText value="Number 5: #{sliderView.number5}" />
+ 
+            <h:outputText value="Range: [#{sliderView.number6},#{sliderView.number7}]" />
+        </h:panelGrid>
+    </p:dialog>
+</h:form>        
+        
+        
+        <h:form>           
+    <p:editor id="editor" widgetVar="editorWidget" value="#{editorView.text}" width="600" />
+ 
+    <h:panelGrid columns="2" style="margin-top: 10px">
+        <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-disk" />
+ 
+        <p:commandButton value="Clear" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
+    </h:panelGrid>
+ 
+    <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+        <h:outputText id="display" value="#{editorView.text}" escape="false" />
+    </p:dialog>
+</h:form> 
+        
+        
+        
+        <h:form>          
+    <h:panelGrid columns="2" cellpadding="5" style="margin-left: 20px">
+        <h:outputText value="Inline: " />
+        <p:colorPicker value="#{colorView.colorInline}" mode="inline" />
+ 
+        <h:outputText value="Popup: " />
+        <p:colorPicker value="#{colorView.colorPopup}" />                   
+    </h:panelGrid>
+ 
+    <p:separator />
+ 
+    <p:commandButton value="Submit" oncomplete="PF('dlg').show();" update="grid" style="margin-left: 20px" />
+ 
+    <p:dialog modal="true" widgetVar="dlg" showEffect="fade" hideEffect="fade" header="Selected Colors" resizable="false">
+        <h:panelGrid id="grid" columns="2" cellpadding="5">
+            <h:outputText value="Inline color: " />
+            <h:outputText value="#{colorView.colorInline}" style="background-color: \##{colorView.colorInline}" />
+ 
+            <h:outputText value="Popup color: " />
+            <h:outputText value="#{colorView.colorPopup}" style="background-color: \##{colorView.colorPopup}" />
+        </h:panelGrid>
+    </p:dialog> 
+</h:form>
+        
+    </h:body>
+</html>
+
